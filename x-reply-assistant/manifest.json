@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "X 运营助手",
+  "version": "1.6.1",
+  "minimum_chrome_version": "120",
+  "description": "在 X 首页评估回复机会，在帖子详情页分析讨论并起草可复制的双语回复。",
+  "permissions": ["storage", "clipboardWrite"],
+  "host_permissions": ["https://x.com/*", "https://api.openai.com/*"],
+  "optional_host_permissions": ["https://api.deepseek.com/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "X 运营助手设置",
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png" }
+  },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "content_scripts": [{
+    "matches": ["https://x.com/*"],
+    "js": ["reply-options.js", "post.js", "content.js", "home.js"],
+    "css": ["content.css"],
+    "run_at": "document_idle"
+  }]
+}

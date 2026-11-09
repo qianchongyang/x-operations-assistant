@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X 运营助手设置</title>
+  <link rel="icon" href="icons/icon-32.png">
+  <link rel="stylesheet" href="options.css">
+  <script type="module" src="options.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand">
+        <img src="icons/icon-48.png" alt="" width="48" height="48">
+        <div>
+          <p class="eyebrow">扩展设置</p>
+          <h1>X 运营助手</h1>
+        </div>
+      </div>
+      <p>在 X 首页查看回复机会评分，在帖子详情页点击「分析并起草」生成双语回复。</p>
+      <aside class="author-card" aria-label="关于作者">
+        <div>
+          <p class="author-title">和 @yuntan4 一起聊 X 运营</p>
+          <p class="author-note">分享英文区运营实测、AI 工具用法和插件更新。</p>
+        </div>
+        <div class="author-actions">
+          <a class="author-link" href="https://x.com/yuntan4" target="_blank" rel="noopener noreferrer">访问我的 X 主页 <span aria-hidden="true">↗</span></a>
+          <a class="author-link author-link-secondary" href="https://github.com/qianchongyang" target="_blank" rel="noopener noreferrer">作者 GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </aside>
+    </header>
+    <form id="settings">
+      <fieldset>
+        <legend>模型连接</legend>
+        <label for="provider">模型服务商</label>
+        <select id="provider">
+          <option value="openai">OpenAI（GPT）</option>
+          <option value="deepseek">DeepSeek</option>
+        </select>
+        <label for="api-key">API Key</label>
+        <input id="api-key" type="password" autocomplete="new-password" spellcheck="false" maxlength="512" placeholder="粘贴你的 API Key">
+        <p id="key-state" class="muted"></p>
+        <button id="clear-key" type="button">清除已保存的 Key</button>
+        <label for="model">模型</label>
+        <select id="model"><option value="">请先保存 Key 并刷新模型</option></select>
+        <div class="actions">
+          <button id="refresh" type="button">刷新模型列表</button>
+          <button id="test" type="button">测试已保存的模型</button>
+        </div>
+        <p class="muted">服务商的 Key 和模型分别保存在本机。切换后先保存设置，再刷新模型列表。测试连接会发送一次简短请求，可能产生费用。</p>
+      </fieldset>
+      <details class="privacy" open>
+        <summary>隐私与数据使用</summary>
+        <p class="muted">首页评分在本机计算。Key 仅发送给对应的服务商用于认证。分析、重新生成或改写会向所选服务商发送主帖、最多 8 条已加载回复，以及近期手动保存的英文样本和原帖片段。中文转英文只发送你输入的文字。回复由你手动发布。</p>
+      </details>
+      <p class="muted">保存设置即确认上述数据使用方式。</p>
+      <fieldset>
+        <legend>回复策略</legend>
+        <div class="times">
+          <label>刚发分段（分钟）<input id="early" type="number" required min="1" max="10079"></label>
+          <label>较早帖子分段（分钟）<input id="late" type="number" required min="2" max="10080"></label>
+        </div>
+        <label for="prompt">可编辑提示词</label>
+        <textarea id="prompt" rows="18" required maxlength="16000" spellcheck="false"></textarea>
+        <button id="reset" type="button">恢复默认提示词</button>
+      </fieldset>
+      <div class="actions footer">
+        <button id="save" type="submit" class="primary">保存设置</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <footer class="about">
+      <p>独立开发的 X 浏览器扩展 <span id="version"></span></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.DS_Store
+.serena/
+.agents/
+.codex/
+.env
+.env.*
+*.pem
+*.key
+*.zip
+node_modules/
